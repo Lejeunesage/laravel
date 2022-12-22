@@ -29,7 +29,7 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => $this->faker->text(15),
-            'body' => $this->faker->text(200),
+            'body' => $this->faker->text(1000),
             'user_id' => function () {
                 return User::inRandomOrder()->first()->id;
             },
