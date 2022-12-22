@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Auth;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Itinéraires Web
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+|C'est ici que vous pouvez enregistrer des itinéraires Web pour votre application. Celles-ci
+| les routes sont chargées par le RouteServiceProvider au sein d'un groupe qui
+| contient le groupe middleware "web". Créez maintenant quelque chose de génial !
 |
 */
 
@@ -37,4 +38,14 @@ Route::get('/article/{article}/edit', [ArticlesController::class, 'edit']);
 
 Route::patch('/article/{article}/edit', [ArticlesController::class, 'update']);
 
-Route::delete('article/{article}/delete', [ArticlesController::class, 'delete']);
+Route::delete('article/{article}/delete', [ArticlesController::class, 'delete']); 
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+
+Route::get('/login', [SessionsController::class, 'login'])->name('login');
+
+
+
+
+
+
