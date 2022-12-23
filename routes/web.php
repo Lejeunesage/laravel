@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,18 +35,26 @@ Route::get('/form', [ArticlesController::class, 'create']);
 
 Route::post('/articles/create', [ArticlesController::class, 'store']);
 
+
 Route::get('/article/{article}/edit', [ArticlesController::class, 'edit']);
 
 Route::patch('/article/{article}/edit', [ArticlesController::class, 'update']);
 
 Route::delete('article/{article}/delete', [ArticlesController::class, 'delete']); 
 
+//Authentification
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
-Route::get('/login', [SessionsController::class, 'login'])->name('login');
+Route::get('/login', [SessionsController::class, 'index'])->name('login');
 
+Route::post('/register', [RegisterController::class, 'create']);
 
+Route::post('/login', [SessionsController::class, 'authenticate']);
 
+Route::post('/logout', [SessionsController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [UserController::class, 'index'])->name('profile');
 
 
 

@@ -29,18 +29,35 @@
     </head>
     <body>
         <h1>Laravel 101</h1>
-       <div class="nav">
-            <a href="/contact-us">Contactez-nous</a>
-            <a href="about-us">A propos de nous</a>
-            <a href="/articles">Articles</a>
-            <a href="/form">Ecrire un article</a>
-       </div>
+      <div class="nav">
+            <div >
+                <a href="/contact-us">Contactez-nous</a>
+                <a href="about-us">A propos de nous</a>
+                <a href="/articles">Articles</a>
+                <a href="/form">Ecrire un article</a>
+            </div>
+            <div>
+                @guest
+                    <a href="{{ route('register') }}">Créer un compte</a>
+                    <a href="{{ route('login') }}">Login</a>
+                @endguest
+            </div>
+            <div>
+                @auth
+                    <a href="{{ route('profile') }}">Votre profil</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        <input type="submit" value="Se déconnecter">
+                    </form>
+                @endauth
+            </div>
+      </div>
 
 
        @include('messages.success')
        @yield('content')
        @yield('about')
        @yield('formulaire')
+       @yield('login')
 
 
     </body>

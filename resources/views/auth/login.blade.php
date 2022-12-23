@@ -1,12 +1,67 @@
-<form action="/login" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="email"> Votre nom</label>
-        <input type="email" name="email" id="email" placeholder="Votre email">
-    </div>
-    <div>
-        <label for="passwordd"> Mot de passe</label>
-        <input type="password" name="passwordd" id="passwordd" placeholder="Mot de passe">
-    </div>
-    <input type="submit" value="Se connecter">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login</title>
+   <style>
+            form{
+                margin-top:2rem;
+
+            }
+            .div{
+               display:flex;
+               flex-direction:column;
+               margin-bottom:1rem;
+            }
+
+            #title{
+               width:50%;
+               height:1.5rem;
+            }
+
+            #body{
+               width:50%;
+               height:5rem;
+            }
+
+            label{
+               margin-bottom:0.5rem;
+            }
+        </style>
+    </head>
+</head>
+<body>
+   @extends('layouts.master')
+   
+   @section('login')
+        <form action="/login" method="post" enctype="multipart/form-data">
+        @csrf
+            <div>
+                <label for="email"> Votre email</label>
+                <input type="email" name="email" id="email" placeholder="Votre email">
+                @error('email')
+                <div style="color:red;">{{ $message }}*</div>
+                @enderror
+            </div>
+            <div>
+                <label for="password"> Mot de passe</label>
+                <input type="password" name="password" id="password" placeholder="Mot de passe">
+                @error('password')
+                <div style="color:red;">{{ $message }}*</div>
+                @enderror
+            </div>
+            <input type="submit" value="Se connecter">
+        </form>
+            
+   
+   @endsection
+   
+</body>
+</html>
+
+
+
+
 

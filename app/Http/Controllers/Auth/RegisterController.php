@@ -43,7 +43,7 @@ class RegisterController extends Controller
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => bcrypt($request['passwordd']),
+            'password' => bcrypt($request['password']),
         ]);
 
         $user = User::where('email', $request['email'])->firstOfFail();
